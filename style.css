@@ -1,0 +1,77 @@
+.gameTheme{
+    border: 5px dotted black;
+    width: 55%;
+    height: 500px;
+    position: relative;
+    display: inline-block;
+} 
+
+.snakeAppereance{
+    /* display: inline-block; */
+    width: 30px;
+    border: 10px solid brown;
+    position: absolute;
+}
+
+.tools{
+    border: 2px solid black;
+    width: 20%;
+    height: 300px;
+    display: inline-block;
+    margin-left: 20px;
+    position: relative;
+    bottom: 60px;
+}
+
+.console{
+    width: 75px;
+    height: 75px;
+    display: inline-block;
+    position: absolute;
+    border: 2px solid black;
+}
+/* .left::before{
+    display: inline;
+    content: "";
+    background-image: url("/home/yassin/WebsitesCodi/Snake Game/images/left.jpeg");
+} */
+
+div button{
+    width: 75px;
+    height: 75px;
+    transition: 0.2s;
+    background-color: #eee;
+}
+button:hover{
+    background-color: #a9f9f9;
+}
+
+.left{
+    top: 100px;
+}
+
+.right{
+    left: 71%;
+    top: 100px;
+}
+
+.btnUp{
+    margin-right: 20px;
+}
+.up{
+    left: 40%;
+}
+
+.down{
+    left: 40.25%;
+    top: 74%;
+}
+
+h1{
+    display: inline-block;
+    /* float: left; */
+}
+.reset{
+    display: inline-block;
+    float: left;
+}

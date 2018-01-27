@@ -1,0 +1,184 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Try this awesome game.. take a break and play snake </h2>
+    <h2 id="result"></h2>
+    <button id="reset" class="reset">Reset Game</button>
+    <!-- game scene -->
+    <div id="game" class="gameTheme">
+        <!-- player which is the snake -->
+        <div id='snake' class="snakeAppereance"></div>
+        <!-- <p id="snake" class="snakeAppereance"></p> -->
+    </div>
+    <!-- tools to control the snake -->
+    <div id="gameTool" class="tools">
+        <!-- tool left -->
+        <div id="goLeft" class="left console">
+            <!-- button left -->
+            <button id="btnLeft">
+                <img src="./images/left.jpeg" width="61">
+            </button>
+        </div>
+        <!-- tool right -->
+        <div id="goRight" class="right console">
+            <!-- button right -->
+            <button id="btnRight" >
+                <img src="./images/right.png" width="61">
+            </button>
+                
+        </div>
+            <!-- tool up -->
+        <div id="goUp" class="up console">
+            <!-- button up -->
+            <button id="btnUp" class="btnUp">
+                <img src="./images/up.png" width="61">
+            </button>
+        </div>
+        <!-- tool down -->
+        <div id="goDown" class="down console">
+            <!-- button down -->
+            <button id="btnDown">
+                <img src="./images/down.jpg" width="61">
+            </button>
+        </div>
+    </div>
+    <h1>Timer: <time>00:00:00</time></h1>
+    <script>
+        var up = document.getElementById("btnUp");
+        var down = document.getElementById("btnDown");
+        var left = document.getElementById("btnLeft");
+        var right = document.getElementById("btnRight");
+        var snake = document.getElementById("snake");
+        var container = document.getElementById("game");
+        var reset = document.getElementById("reset");
+        var result = document.getElementById("result");
+        var posX = 1;
+        var posY = 1;
+        var setter; 
+        var seconds=0;
+        var minutes=0;
+        var hours=0;
+        var t;
+        h1 = document.getElementsByTagName('h1')[0];
+       
+        var addTime = function(){
+            seconds++;
+            if(seconds>=60){
+                seconds=0;
+                minutes++;
+            }else if(minutes>=60){
+                minutes=0;
+                hours++;
+            }
+            h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+            // timer()
+        }
+            
+        // var timer = function(){
+        //     t = setTimeout(addTime,1000)
+        //     console.log("time",t)
+        // }
+        // // timer()
+        // var stopTimer = function(){
+        //     clearTimeout(t);
+        // }
+        // stopTimer()
+        
+        var gameManager = function(move){
+            
+            // debugger;j
+            // console.log(posX,posY)
+            for(i=0;i<dir.length;i++){
+        if(posX>700 || posX == 0){
+                clearTimeout(t); 
+                posX = 0;
+                posY = 0;
+                result.innerHTML = "Sorry You Lost!"
+            }else{
+
+            if(move === "right"){
+                // timer()
+                t = setTimeout(addTime,1000)
+                posX += 10;
+                // console.log(posX)
+            }else if(move === "left"){
+                // timer()
+                t = setTimeout(addTime,1000)
+                posX -= 10;
+                // console.log(posX)
+            }else if(move ==="up"){
+                // timer()
+                t = setTimeout(addTime,1000)
+                posY -= 10;
+                // console.log(posY)
+            }else if(move === "down"){
+                // timer()
+                t = setTimeout(addTime,1000)
+                posY += 10;
+                // console.log(posY)
+            }
+        }
+                // t = setTimeout(addTime,1000)
+            if( (posX >700 || posX<0)){
+                // timer()
+                // stopTimer()
+                // clearTimeout(t);
+                posX = 0;
+                posY = 0;
+            }else if((posY >490 || posY<0)){
+                // timer()                
+                // stopTimer()
+                // clearTimeout(t);
+                posX = 0;
+                posY = 0;
+            }
+
+            }
+            snake.style.left = posX + "px";
+            snake.style.top = posY + "px";
+            // console.log("left: ",snake.style.left, posX ,"top: ",snake.style.top , posY)
+        }
+
+        var dir = ['right','left','up','down']
+
+        var settingTheInterval = function(input){
+            if(input === "right"){
+                gameManager(input) 
+                // console.log(posX)
+            }else if(input === "left"){
+                gameManager(input)
+                // console.log(posX)
+            }else if(input ==="up"){
+                gameManager(input)
+                // console.log(posY)
+            }else if(input === "down"){
+                gameManager(input)
+                // console.log(posY)
+            }
+            clearInterval(setter);
+            setter = setInterval( ()=> gameManager(input),300);
+        }
+        // var timeAdd = document.getElementsByName("h1");
+        reset.addEventListener("click",function(){
+            // t = setTimeout(addTime,1000);
+            seconds = 0 ; minutes = 0; hours = 0;
+            h1.textContent = "00:00:00"
+            posX = 1;
+            posY = 1;
+            settingTheInterval("right")
+        } );
+        down.addEventListener("click",()=> settingTheInterval("down") );
+        right.addEventListener("click",()=> settingTheInterval("right") );
+        left.addEventListener("click",()=> settingTheInterval("left"));
+        up.addEventListener("click", ()=> settingTheInterval("up"));
+        // clearInterval(settingTheInterval);
+    </script>
+</body>
+</html>
