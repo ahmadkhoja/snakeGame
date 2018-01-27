@@ -9,8 +9,7 @@
 </head>
 <body>
     <h2>Try this awesome game.. take a break and play snake </h2>
-    <h2 id="result"></h2>
-    <button id="reset" class="reset">Reset Game</button>
+    
     <!-- game scene -->
     <div id="game" class="gameTheme">
         <!-- player which is the snake -->
@@ -49,7 +48,12 @@
             </button>
         </div>
     </div>
-    <h1>Timer: <time>00:00:00</time></h1>
+    <!-- Game Control  -->
+    <article class="game_control">
+            <h2 id="result"></h2>
+            <button id="reset" class="reset">Play Game</button>
+            <h1>Timer: <time>00:00:00</time></h1>
+    </article>
     <script>
         var up = document.getElementById("btnUp");
         var down = document.getElementById("btnDown");
@@ -59,8 +63,8 @@
         var container = document.getElementById("game");
         var reset = document.getElementById("reset");
         var result = document.getElementById("result");
-        var posX = 1;
-        var posY = 1;
+        var posX = 10;
+        var posY = 10;
         var setter; 
         var seconds=0;
         var minutes=0;
@@ -78,69 +82,39 @@
                 hours++;
             }
             h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
-            // timer()
         }
             
-        // var timer = function(){
-        //     t = setTimeout(addTime,1000)
-        //     console.log("time",t)
-        // }
-        // // timer()
-        // var stopTimer = function(){
-        //     clearTimeout(t);
-        // }
-        // stopTimer()
-        
         var gameManager = function(move){
-            
-            // debugger;j
-            // console.log(posX,posY)
-            for(i=0;i<dir.length;i++){
-        if(posX>700 || posX == 0){
+            if( posX > 680 || posX < 0 || posY < 0 || posY > 460 || posY == 0){
                 clearTimeout(t); 
                 posX = 0;
                 posY = 0;
                 result.innerHTML = "Sorry You Lost!"
+                reset.innerHTML = "Reset Game"
             }else{
-
+        t = setTimeout(addTime,1000)
+    
+    for(i=0;i<dir.length;i++){
             if(move === "right"){
-                // timer()
-                t = setTimeout(addTime,1000)
+                // t = setTimeout(addTime,1000)
                 posX += 10;
-                // console.log(posX)
+                
             }else if(move === "left"){
-                // timer()
-                t = setTimeout(addTime,1000)
+                // t = setTimeout(addTime,1000)
                 posX -= 10;
-                // console.log(posX)
+                
             }else if(move ==="up"){
-                // timer()
-                t = setTimeout(addTime,1000)
+                // t = setTimeout(addTime,1000)
                 posY -= 10;
-                // console.log(posY)
+                
             }else if(move === "down"){
-                // timer()
-                t = setTimeout(addTime,1000)
+                // t = setTimeout(addTime,1000)
                 posY += 10;
-                // console.log(posY)
+                
             }
         }
-                // t = setTimeout(addTime,1000)
-            if( (posX >700 || posX<0)){
-                // timer()
-                // stopTimer()
-                // clearTimeout(t);
-                posX = 0;
-                posY = 0;
-            }else if((posY >490 || posY<0)){
-                // timer()                
-                // stopTimer()
-                // clearTimeout(t);
-                posX = 0;
-                posY = 0;
-            }
 
-            }
+    }
             snake.style.left = posX + "px";
             snake.style.top = posY + "px";
             // console.log("left: ",snake.style.left, posX ,"top: ",snake.style.top , posY)
@@ -163,7 +137,7 @@
                 // console.log(posY)
             }
             clearInterval(setter);
-            setter = setInterval( ()=> gameManager(input),300);
+            setter = setInterval( ()=> gameManager(input),1000);
         }
         // var timeAdd = document.getElementsByName("h1");
         reset.addEventListener("click",function(){

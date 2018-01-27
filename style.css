@@ -19,10 +19,20 @@
     height: 300px;
     display: inline-block;
     margin-left: 20px;
+    bottom: 200px;
     position: relative;
-    bottom: 60px;
+    
 }
 
+.game_control{
+    display: inline-block;
+    width: 20%;
+    border: 2px solid black;
+    position: relative;
+    right: 280px;
+    bottom: 80px;
+
+}
 .console{
     width: 75px;
     height: 75px;
@@ -75,3 +85,4 @@ h1{
     display: inline-block;
     float: left;
 }
+
